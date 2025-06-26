@@ -1,6 +1,6 @@
 {
-  "name": "auto-tech-blog-sdk",
-  "version": "1.0.0",
+  "name": "@jd316/auto-tech-blog-sdk",
+  "version": "1.0.1",
   "description": "CLI + SDK to generate a tech/AI blog post each day with Gemini, compress hero image and scaffold Next.js static files.",
   "type": "module",
   "bin": {
