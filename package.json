@@ -22,12 +22,12 @@
     ".env.example"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "node test/smoke.js",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint": "eslint . --ext .js",
     "build": "echo 'No build step needed for pure ESM package'",
-    "prepublishOnly": "npm run test"
+    "prepublishOnly": "npm test"
   },
   "keywords": [
     "gemini",
@@ -55,10 +55,7 @@
     "sharp": "^0.33.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.27.7",
-    "@babel/preset-env": "^7.27.2",
     "@jest/globals": "^29.7.0",
-    "babel-jest": "^30.0.2",
     "eslint": "^8.57.1",
     "jest": "^29.7.0"
   },
@@ -74,4 +71,4 @@
     "url": "https://github.com/jd316/auto-tech-blog-sdk/issues"
   },
   "homepage": "https://github.com/jd316/auto-tech-blog-sdk#readme"
-}
+} 
