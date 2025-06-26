@@ -28,38 +28,33 @@ This project aims to streamline the content creation process for tech bloggers, 
 The `auto-tech-blog-sdk` is structured into several modular components, each responsible for a specific part of the blog generation pipeline. This design ensures maintainability, extensibility, and reusability.
 
 ```mermaid
-graph TD
-    A["CLI / SDK Entry Point"] --> B{"Choose Topic Source"}
-    B --> C{"News APIs (Guardian)"}
-    B --> D["Hacker News"]
-    B --> E["Custom RSS Feeds"]
+graph LR
+    subgraph "1. Topic Discovery"
+        A["CLI/SDK<br>Entry Point"] --> B{"Select<br>Source"}
+        B --> C["News APIs"] & D["Hacker News"] & E["RSS Feeds"]
+    end
 
-    C --> F["Topic Suggestion"]
-    D --> F
-    E --> F
+    subgraph "2. AI Content Generation"
+        F["Topic Suggestion"]
+        C & D & E --> F
+        F --> G["Google Gemini AI"]
+        G --> H["Draft Blog Post"]
+        H --> I{"Fact-Check"}
+        I -- "OK" --> J["Generate<br>Hero Image"]
+        I -- "Issues" --> H
+    end
+    
+    subgraph "3. File Production"
+        J --> K["Optimize<br>Image"]
+        K --> L["Save All<br>Assets"]
+        L --> M["Generate RSS<br>& Sitemap"]
+        M --> Q["Complete"]
+    end
 
-    F --> G["Google Gemini AI"]
-    G --> H["Draft Blog Post"]
-    H --> I["Fact-Check Content"]
-    I -- "OK" --> J["Generate Hero Image"]
-    I -- "Issues" --> H
-
-    J --> K["Image Optimization (Sharp)"]
-    K --> L["Save Post Assets"]
-
-    L --> M["Generate RSS Feed"]
-    L --> N["Generate Sitemap"]
-
-    M --> O["Save RSS Feed"]
-    N --> P["Save Sitemap"]
-
-    O --> Q["Completion"]
-    P --> Q
-
-    subgraph "Data Flow"
-        R["Environment Variables (.env)"] -- "provide API Keys" --> G
-        S["History Tracking (.blog-history.json)"] -- "prevent duplicates" --> B
-        T["Output Directory (posts/, assets/)"] -- "save content" --> L
+    subgraph "Data Dependencies"
+        R[".env"] -- "API Keys" --> G
+        S["history.json"] -- "Prevents Duplicates" --> B
+        T["Output Dir"] -- "Saves Files" --> L
     end
 
     style A fill:#f9f,stroke:#333,stroke-width:2px
@@ -75,10 +70,10 @@ graph TD
     style K fill:#ccf,stroke:#333,stroke-width:2px
     style L fill:#9cf,stroke:#333,stroke-width:2px
     style M fill:#bbf,stroke:#333,stroke-width:2px
-    style N fill:#bbf,stroke:#333,stroke-width:2px
-    style O fill:#9cf,stroke:#333,stroke-width:2px
-    style P fill:#9cf,stroke:#333,stroke-width:2px
     style Q fill:#f9f,stroke:#333,stroke-width:2px
+    style R fill:#ddd,stroke:#333,stroke-width:1px
+    style S fill:#ddd,stroke:#333,stroke-width:1px
+    style T fill:#ddd,stroke:#333,stroke-width:1px
 ```
 
 ### Core Modules
