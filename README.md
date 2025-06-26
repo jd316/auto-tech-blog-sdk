@@ -5,6 +5,29 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/node/v/auto-tech-blog-sdk.svg)](https://nodejs.org)
 
+## Installation
+
+### **Recommended: npm (Public, No Auth Required)**
+
+```bash
+npm install auto-tech-blog-sdk
+```
+
+- No authentication required.
+- Always up-to-date and public.
+- [View on npm](https://www.npmjs.com/package/auto-tech-blog-sdk)
+
+### **Optional: GitHub Packages (Requires GitHub Token)**
+
+```bash
+npm install @jd316/auto-tech-blog-sdk --registry=https://npm.pkg.github.com
+```
+
+- Requires a GitHub personal access token in your `.npmrc`.
+- [View on GitHub Packages](https://github.com/jd316/auto-tech-blog-sdk/pkgs/npm/auto-tech-blog-sdk)
+
+> **Note:** For most users, installing from npm is recommended for simplicity and public access.
+
 ## Project Overview
 
 The `auto-tech-blog-sdk` is a powerful and versatile Node.js package designed to automate the generation of high-quality, AI-powered tech and AI blog posts. It serves as both a command-line interface (CLI) tool for quick post generation and a robust Software Development Kit (SDK) for programmatic integration into larger applications.
