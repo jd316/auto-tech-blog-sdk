@@ -10,7 +10,7 @@
 
 The `auto-tech-blog-sdk` is a powerful and versatile Node.js package designed to automate the generation of high-quality, AI-powered tech and AI blog posts. It serves as both a command-line interface (CLI) tool for quick post generation and a robust Software Development Kit (SDK) for programmatic integration into larger applications.
 
-### Key Features and Capabilities:
+### Key Features and Capabilities
 
 - **Automated Content Creation**: Seamlessly generates full blog posts, including content, hero images, RSS feeds, and sitemaps, all with a single command or API call.
 - **Intelligent Topic Discovery**: Fetches trending tech topics from diverse sources like the Guardian API, Hacker News, and custom RSS feeds, ensuring your content is always relevant and timely.
@@ -81,17 +81,17 @@ graph TD
     style Q fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
-### Core Modules:
+### Core Modules
 
--   `cli.js`: The main command-line interface entry point, responsible for parsing arguments and orchestrating the blog generation workflow.
--   `index.js`: The primary SDK entry point, exposing the `runOnce` and `generateBlogPost` functions for programmatic use.
--   `src/gemini.js`: Encapsulates all interactions with the Google Gemini API, including topic generation, post drafting, hero image creation, and fact-checking.
--   `src/postGenerator.js`: Manages the end-to-end process of generating a single blog post, coordinating calls to Gemini and other utilities.
--   `src/topicSources.js`: Handles fetching and curating tech topic ideas from various external APIs (Guardian, Hacker News) and RSS feeds.
--   `src/rssGenerator.js`: Responsible for generating the RSS feed XML from all published blog posts.
--   `src/sitemapGenerator.js`: Creates the SEO-optimized XML sitemap for the blog.
--   `src/utils.js`: Contains various utility functions, including date handling, slug generation, reading time calculation, and image processing.
--   `src/compressionLog.js`: Manages the logging of image compression statistics.
+- `cli.js`: The main command-line interface entry point, responsible for parsing arguments and orchestrating the blog generation workflow.
+- `index.js`: The primary SDK entry point, exposing the `runOnce` and `generateBlogPost` functions for programmatic use.
+- `src/gemini.js`: Encapsulates all interactions with the Google Gemini API, including topic generation, post drafting, hero image creation, and fact-checking.
+- `src/postGenerator.js`: Manages the end-to-end process of generating a single blog post, coordinating calls to Gemini and other utilities.
+- `src/topicSources.js`: Handles fetching and curating tech topic ideas from various external APIs (Guardian, Hacker News) and RSS feeds.
+- `src/rssGenerator.js`: Responsible for generating the RSS feed XML from all published blog posts.
+- `src/sitemapGenerator.js`: Creates the SEO-optimized XML sitemap for the blog.
+- `src/utils.js`: Contains various utility functions, including date handling, slug generation, reading time calculation, and image processing.
+- `src/compressionLog.js`: Manages the logging of image compression statistics.
 
 This modular design allows for clear separation of concerns, making it easier to maintain, debug, and extend the project with new features or integrations.
 
@@ -107,20 +107,20 @@ npx auto-tech-blog-sdk
 
 ### Quick Setup
 
-1.  **Copy environment template:**
+1. **Copy environment template:**
 
     ```bash
     cp .env.example .env
     ```
 
-2.  **Add your API key:**
+2. **Add your API key:**
 
     ```bash
     # Edit .env and add your Gemini API key
     GEMINI_API_KEY=your_actual_api_key_here
     ```
 
-3.  **Run the generator:**
+3. **Run the generator:**
 
     ```bash
     auto-tech-blog-sdk
@@ -153,14 +153,14 @@ export DEBUG="1"          # Enable verbose error logging
 
 The CLI will:
 
-1.  **Fetch Topics** - From Guardian API, Hacker News, and curated RSS feeds
-2.  **AI Generation** - Draft ~700-word posts using Google's Gemini AI
-3.  **Fact-checking** - Verify content against source articles
-4.  **Hero Images** - Generate 1920×1080 text-free images with Sharp optimization
-5.  **File Structure** - Create organized post folders with metadata
-6.  **RSS Feed** - Generate XML feed from all posts
-7.  **Sitemap** - Create SEO-optimized XML sitemap
-8.  **Compression Logging** - Track image optimization statistics
+1. **Fetch Topics** - From Guardian API, Hacker News, and curated RSS feeds
+2. **AI Generation** - Draft ~700-word posts using Google's Gemini AI
+3. **Fact-checking** - Verify content against source articles
+4. **Hero Images** - Generate 1920×1080 text-free images with Sharp optimization
+5. **File Structure** - Create organized post folders with metadata
+6. **RSS Feed** - Generate XML feed from all posts
+7. **Sitemap** - Create SEO-optimized XML sitemap
+8. **Compression Logging** - Track image optimization statistics
 
 ### Output Structure
 
@@ -221,41 +221,41 @@ const result = await generateBlogPost({
 
 **Core Generation:**
 
--   `runOnce(options)` - Generate a complete blog post with RSS/sitemap
--   `generateBlogPost(options)` - Generate post without RSS/sitemap
--   `generateTopic()` - Get AI-generated topic ideas
--   `draftPost(params)` - Create post content from topic
--   `createHeroImage(params)` - Generate and optimize hero images
--   `getSuggestedTopic()` - Fetch topics from news sources
--   `factCheck(params)` - Verify content accuracy
+- `runOnce(options)` - Generate a complete blog post with RSS/sitemap
+- `generateBlogPost(options)` - Generate post without RSS/sitemap
+- `generateTopic()` - Get AI-generated topic ideas
+- `draftPost(params)` - Create post content from topic
+- `createHeroImage(params)` - Generate and optimize hero images
+- `getSuggestedTopic()` - Fetch topics from news sources
+- `factCheck(params)` - Verify content accuracy
 
 **Content Management:**
 
--   `generateRSS(options)` - Create RSS feed XML
--   `saveRSSFeed(options)` - Save RSS feed to file
--   `generateSitemap(options)` - Create XML sitemap
--   `saveSitemap(options)` - Save sitemap to file
+- `generateRSS(options)` - Create RSS feed XML
+- `saveRSSFeed(options)` - Save RSS feed to file
+- `generateSitemap(options)` - Create XML sitemap
+- `saveSitemap(options)` - Save sitemap to file
 
 **Utilities:**
 
--   `createSlug(title)` - URL-friendly slug generation
--   `getISTDate()` - IST timezone date handling
--   `calculateReadingTime(content)` - Estimate reading time
--   `saveAndOptimizeImage(buffer, path)` - Image optimization with logging
--   `loadHistory()/saveHistory()` - Duplicate prevention
--   `getCompressionStats()` - Image optimization statistics
+- `createSlug(title)` - URL-friendly slug generation
+- `getISTDate()` - IST timezone date handling
+- `calculateReadingTime(content)` - Estimate reading time
+- `saveAndOptimizeImage(buffer, path)` - Image optimization with logging
+- `loadHistory()/saveHistory()` - Duplicate prevention
+- `getCompressionStats()` - Image optimization statistics
 
 ## Configuration
 
 ### API Keys
 
-1.  **Gemini API** (Required)
-    -   Get from [Google AI Studio](https://aistudio.google.com/)
-    -   Set `GEMINI_API_KEY` environment variable
+1. **Gemini API** (Required)
+    - Get from [Google AI Studio](https://aistudio.google.com/)
+    - Set `GEMINI_API_KEY` environment variable
 
-2.  **Guardian API** (Optional)
-    -   Get from [Guardian Open Platform](https://open-platform.theguardian.com/)
-    -   Set `GUARDIAN_KEY` environment variable
+2. **Guardian API** (Optional)
+    - Get from [Guardian Open Platform](https://open-platform.theguardian.com/)
+    - Set `GUARDIAN_KEY` environment variable
 
 ### Options
 
@@ -273,38 +273,38 @@ const result = await generateBlogPost({
 
 ## Features
 
--   ✅ Automated content generation with AI
--   ✅ Real-time news source integration
--   ✅ Fact-checking against source material
--   ✅ Hero image generation with Gemini 2.0 Flash
--   ✅ Sharp image optimization with compression logging
--   ✅ SEO-optimized metadata and keywords
--   ✅ Reading time calculation
--   ✅ Duplicate prevention with history tracking
--   ✅ RSS feed generation
--   ✅ XML sitemap generation
--   ✅ Next.js ready components
--   ✅ IST timezone handling
--   ✅ Comprehensive error handling
--   ✅ Automatic .env file loading with dotenv
+- ✅ Automated content generation with AI
+- ✅ Real-time news source integration
+- ✅ Fact-checking against source material
+- ✅ Hero image generation with Gemini 2.0 Flash
+- ✅ Sharp image optimization with compression logging
+- ✅ SEO-optimized metadata and keywords
+- ✅ Reading time calculation
+- ✅ Duplicate prevention with history tracking
+- ✅ RSS feed generation
+- ✅ XML sitemap generation
+- ✅ Next.js ready components
+- ✅ IST timezone handling
+- ✅ Comprehensive error handling
+- ✅ Automatic .env file loading with dotenv
 
 ## Complete Feature Parity
 
 This package includes **all features** from the original mazakiyaai-static project:
 
--   **Daily automation workflow** - Complete post generation pipeline
--   **Image compression** - Sharp optimization with detailed logging
--   **RSS & Sitemap** - SEO-ready XML generation
--   **Fact-checking** - AI-powered content verification
--   **Multi-source news** - Guardian, Hacker News, RSS feeds
--   **IST timezone** - Proper India Standard Time handling
--   **History tracking** - Duplicate title prevention
--   **Next.js integration** - Ready-to-use React components
+- **Daily automation workflow** - Complete post generation pipeline
+- **Image compression** - Sharp optimization with detailed logging
+- **RSS & Sitemap** - SEO-ready XML generation
+- **Fact-checking** - AI-powered content verification
+- **Multi-source news** - Guardian, Hacker News, RSS feeds
+- **IST timezone** - Proper India Standard Time handling
+- **History tracking** - Duplicate title prevention
+- **Next.js integration** - Ready-to-use React components
 
 ## Requirements
 
--   Node.js 18+
--   Google Gemini API key
+- Node.js 18+
+- Google Gemini API key
 
 ## Contributing
 
