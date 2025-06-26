@@ -20,7 +20,7 @@ export async function generateRSS(options = {}) {
   } = options;
 
   const postsDir = path.join(outputDir, 'posts');
-  
+
   try {
     const postFolders = await fs.readdir(postsDir);
     const posts = [];
@@ -31,10 +31,10 @@ export async function generateRSS(options = {}) {
       try {
         const metadataPath = path.join(postsDir, folder, 'metadata.json');
         const metadata = JSON.parse(await fs.readFile(metadataPath, 'utf-8'));
-        
+
         const contentPath = path.join(postsDir, folder, 'content.md');
         const content = await fs.readFile(contentPath, 'utf-8');
-        
+
         posts.push({
           ...metadata,
           content,
@@ -94,7 +94,7 @@ export async function saveRSSFeed(options = {}) {
 
   const rssContent = await generateRSS({ outputDir, ...rssOptions });
   const outputPath = path.join(outputDir, rssPath);
-  
+
   await fs.writeFile(outputPath, rssContent);
   console.log(`✅ RSS feed generated at ${outputPath}`);
-} 
+}

@@ -1,8 +1,8 @@
-import { 
-  createSlug, 
-  getISTDate, 
-  calculateReadingTime, 
-  isDuplicateTitle 
+import {
+  createSlug,
+  getISTDate,
+  calculateReadingTime,
+  isDuplicateTitle,
 } from '../src/utils.js';
 
 describe('Utility Functions', () => {
@@ -74,4 +74,4 @@ describe('Utility Functions', () => {
       expect(isDuplicateTitle('Any Title', [])).toBe(false);
     });
   });
-}); 
+});

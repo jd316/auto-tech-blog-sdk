@@ -39,10 +39,10 @@ export function calculateReadingTime(content) {
   const words = content
     .replace(/```[\s\S]*?```/g, '') // Remove code blocks
     .replace(/`[^`]+`/g, '') // Remove inline code
-    .replace(/[#*_\[\]()]/g, '') // Remove markdown syntax
+    .replace(/[#*_[\]()]/g, '') // Remove markdown syntax
     .split(/\s+/)
     .filter(word => word.length > 0).length;
-  
+
   return Math.max(1, Math.ceil(words / wordsPerMinute));
 }
 
@@ -161,7 +161,7 @@ export async function saveHistory(historyPath, titles) {
  */
 export function isDuplicateTitle(title, history) {
   const normalizedTitle = title.toLowerCase().trim();
-  return history.some(prevTitle => 
-    prevTitle.toLowerCase().trim() === normalizedTitle
+  return history.some(prevTitle =>
+    prevTitle.toLowerCase().trim() === normalizedTitle,
   );
-} 
+}

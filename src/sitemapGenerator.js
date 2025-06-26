@@ -39,14 +39,14 @@ export async function generateSitemap(options = {}) {
 
   try {
     const postFolders = await fs.readdir(postsDir);
-    
+
     for (const folder of postFolders) {
       if (!/^\d{4}-\d{2}-\d{2}-/.test(folder)) continue;
 
       try {
         const metadataPath = path.join(postsDir, folder, 'metadata.json');
         const metadata = JSON.parse(await fs.readFile(metadataPath, 'utf-8'));
-        
+
         urls.push({
           loc: `${siteUrl}/blog/${folder}`,
           lastmod: metadata.date,
@@ -99,10 +99,10 @@ export async function saveSitemap(options = {}) {
 
   const sitemapContent = await generateSitemap({ outputDir, ...sitemapOptions });
   const outputPath = path.join(outputDir, sitemapPath);
-  
+
   await fs.writeFile(outputPath, sitemapContent);
-  
+
   // Count URLs for logging
   const urlCount = (sitemapContent.match(/<url>/g) || []).length;
   console.log(`✅ Sitemap generated with ${urlCount} entries at ${outputPath}`);
-} 
+}

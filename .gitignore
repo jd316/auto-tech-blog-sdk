@@ -8,7 +8,7 @@ build/
 posts/
 assets/
 .blog-history.json
-*.tgz
+*.tgz 
 coverage/
 .nyc_output/
 *.swp

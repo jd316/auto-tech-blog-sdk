@@ -13,7 +13,7 @@ function getClient() {
  */
 export async function generateTopic() {
   const genAI = getClient();
-  const prompt = `You are a technology trend spotter. Suggest a fresh, timely tech-topic for a short blog post.\nReturn JSON with exactly these keys: title, description. Title must be ≤ 70 characters, description ≤ 200.`;
+  const prompt = 'You are a technology trend spotter. Suggest a fresh, timely tech-topic for a short blog post.\nReturn JSON with exactly these keys: title, description. Title must be ≤ 70 characters, description ≤ 200.';
   const result = await genAI.models.generateContent({
     model: 'gemini-2.5-flash',
     contents: [{ role: 'user', parts: [{ text: prompt }] }],
@@ -32,7 +32,9 @@ export async function generateTopic() {
         description: json.description ?? '',
       };
     }
-  } catch {}
+  } catch (error) {
+    // JSON parsing failed, continue to fallback
+  }
 
   // Regex fallback
   const titleMatch = text.match(/"title"\s*:\s*"([^"]+)"/i);
@@ -80,7 +82,7 @@ export async function draftPost({ title, description, fullContent = '' }) {
 export async function createHeroImage({ title }) {
   const genAI = getClient();
   const prompt = `Generate a visually appealing, abstract 16:9 hero image for a tech blog about "${title}". The image must NOT contain any text, letters, numbers, captions, or watermarks—pure imagery only.`;
-  
+
   try {
     const res = await genAI.models.generateContent({
       model: 'gemini-2.0-flash-preview-image-generation',
@@ -92,7 +94,7 @@ export async function createHeroImage({ title }) {
     const imagePart = res.candidates?.[0]?.content?.parts?.find((p) => p.inlineData && p.inlineData.mimeType?.startsWith('image/'));
     const b64 = imagePart?.inlineData?.data;
     if (!b64) throw new Error('Gemini response did not contain inline image data');
-    
+
     return Buffer.from(b64, 'base64');
   } catch (error) {
     console.warn('Hero image generation failed, will use placeholder');
@@ -127,4 +129,4 @@ export async function factCheck({ draft, context }) {
     console.warn('Fact-check failed, assuming OK');
     return { ok: true, issues: [] };
   }
-} 
+}

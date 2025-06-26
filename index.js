@@ -3,21 +3,21 @@ import { getSuggestedTopic } from './src/topicSources.js';
 import { generateBlogPost } from './src/postGenerator.js';
 import { generateRSS, saveRSSFeed } from './src/rssGenerator.js';
 import { generateSitemap, saveSitemap } from './src/sitemapGenerator.js';
-import { 
-  createSlug, 
-  getISTDate, 
-  calculateReadingTime, 
+import {
+  createSlug,
+  getISTDate,
+  calculateReadingTime,
   saveAndOptimizeImage,
   createPlaceholderImage,
   loadHistory,
   saveHistory,
-  isDuplicateTitle 
+  isDuplicateTitle,
 } from './src/utils.js';
-import { 
-  loadCompressionLog, 
-  saveCompressionLog, 
-  updateCompressionLog, 
-  getCompressionStats 
+import {
+  loadCompressionLog,
+  saveCompressionLog,
+  updateCompressionLog,
+  getCompressionStats,
 } from './src/compressionLog.js';
 
 export {
@@ -26,19 +26,19 @@ export {
   draftPost,
   createHeroImage,
   factCheck,
-  
+
   // Content sources
   getSuggestedTopic,
-  
+
   // Main generation
   generateBlogPost,
-  
+
   // RSS & Sitemap
   generateRSS,
   saveRSSFeed,
   generateSitemap,
   saveSitemap,
-  
+
   // Utilities
   createSlug,
   getISTDate,
@@ -48,7 +48,7 @@ export {
   loadHistory,
   saveHistory,
   isDuplicateTitle,
-  
+
   // Compression logging
   loadCompressionLog,
   saveCompressionLog,
@@ -70,4 +70,4 @@ export {
  */
 export async function runOnce(opts = {}) {
   return await generateBlogPost(opts);
-} 
+}

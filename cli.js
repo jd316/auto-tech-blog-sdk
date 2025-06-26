@@ -33,11 +33,11 @@ if (process.argv.includes('--version') || process.argv.includes('-v')) {
   const { readFileSync } = await import('fs');
   const { fileURLToPath } = await import('url');
   const { dirname, join } = await import('path');
-  
+
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
   const packagePath = join(__dirname, 'package.json');
-  
+
   const pkg = JSON.parse(readFileSync(packagePath, 'utf-8'));
   console.log(pkg.version);
   process.exit(0);
@@ -67,4 +67,4 @@ runOnce()
       console.error(err.stack);
     }
     process.exit(1);
-  }); 
+  });

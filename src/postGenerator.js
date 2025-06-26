@@ -2,16 +2,16 @@ import fs from 'fs/promises';
 import path from 'path';
 import { generateTopic, draftPost, createHeroImage, factCheck } from './gemini.js';
 import { getSuggestedTopic } from './topicSources.js';
-import { 
-  createSlug, 
-  getISTDate, 
-  calculateReadingTime, 
+import {
+  createSlug,
+  getISTDate,
+  calculateReadingTime,
   ensureDir,
   saveAndOptimizeImage,
   createPlaceholderImage,
   loadHistory,
   saveHistory,
-  isDuplicateTitle 
+  isDuplicateTitle,
 } from './utils.js';
 import { saveRSSFeed } from './rssGenerator.js';
 import { saveSitemap } from './sitemapGenerator.js';
@@ -27,8 +27,8 @@ import { saveSitemap } from './sitemapGenerator.js';
 export async function generateBlogPost(options = {}) {
   const {
     outputDir = process.cwd(),
-    date = process.env.DATE && /^\d{4}-\d{2}-\d{2}$/.test(process.env.DATE) 
-      ? process.env.DATE 
+    date = process.env.DATE && /^\d{4}-\d{2}-\d{2}$/.test(process.env.DATE)
+      ? process.env.DATE
       : getISTDate(),
     skipDuplicateCheck = false,
   } = options;
@@ -96,7 +96,7 @@ export async function generateBlogPost(options = {}) {
 
   try {
     const imageBuffer = await createHeroImage({ title: topic.title });
-    
+
     if (imageBuffer.length > 100) { // Check if we got actual image data
       await saveAndOptimizeImage(imageBuffer, imagePath);
       console.log(`🖼  Saved hero image: ${imageFileName}`);
@@ -125,7 +125,7 @@ export async function generateBlogPost(options = {}) {
   // Write metadata file
   await fs.writeFile(
     path.join(postDir, 'metadata.json'),
-    JSON.stringify(metadata, null, 2)
+    JSON.stringify(metadata, null, 2),
   );
 
   // Write content file
@@ -135,7 +135,7 @@ ${draft}`;
 
   await fs.writeFile(
     path.join(postDir, 'content.md'),
-    content
+    content,
   );
 
   // Write index file for Next.js (if needed)
@@ -186,7 +186,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   await fs.writeFile(
     path.join(postDir, 'index.tsx'),
-    indexContent
+    indexContent,
   );
 
   // Update history
@@ -198,7 +198,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   // Generate RSS and sitemap
   try {
-    await saveRSSFeed({ 
+    await saveRSSFeed({
       outputDir,
       siteUrl: options.siteUrl || 'https://example.com',
       title: options.siteTitle || 'Tech Blog',
@@ -235,7 +235,7 @@ export const getStaticProps: GetStaticProps = async () => {
  */
 function extractKeywords(content) {
   const commonWords = new Set([
-    'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'is', 'are', 'was', 'were', 'be', 'been', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'this', 'that', 'these', 'those'
+    'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'is', 'are', 'was', 'were', 'be', 'been', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'this', 'that', 'these', 'those',
   ]);
 
   const words = content
@@ -255,4 +255,4 @@ function extractKeywords(content) {
     .sort(([,a], [,b]) => b - a)
     .slice(0, 10)
     .map(([word]) => word);
-} 
+}

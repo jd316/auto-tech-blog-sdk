@@ -57,14 +57,14 @@ async function extractArticleContent(url) {
       },
       timeout: 10000,
     });
-    
+
     if (!response.ok) return '';
-    
+
     const html = await response.text();
     const dom = new JSDOM(html, { url });
     const reader = new Readability(dom.window.document);
     const article = reader.parse();
-    
+
     return article?.textContent || '';
   } catch (error) {
     console.warn(`Failed to extract content from ${url}:`, error.message);
@@ -78,14 +78,14 @@ async function extractArticleContent(url) {
  */
 async function fetchFromGuardian() {
   if (!process.env.GUARDIAN_KEY) return [];
-  
+
   try {
     const url = `https://content.guardianapis.com/search?section=technology&page-size=10&api-key=${process.env.GUARDIAN_KEY}`;
     const response = await fetch(url);
     const data = await response.json();
-    
+
     if (!data.response?.results) return [];
-    
+
     return data.response.results.map(item => ({
       title: item.webTitle,
       description: item.fields?.trailText || '',
@@ -106,13 +106,13 @@ async function fetchFromHackerNews() {
   try {
     const topStoriesResponse = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
     const topStoryIds = await topStoriesResponse.json();
-    
+
     const stories = [];
     for (const id of topStoryIds.slice(0, 20)) {
       try {
         const itemResponse = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
         const item = await itemResponse.json();
-        
+
         if (item.url && isTechRelated(item.title)) {
           stories.push({
             title: item.title,
@@ -121,13 +121,13 @@ async function fetchFromHackerNews() {
             source: 'Hacker News',
           });
         }
-        
+
         if (stories.length >= 5) break;
       } catch (error) {
         continue;
       }
     }
-    
+
     return stories;
   } catch (error) {
     console.warn('Hacker News fetch failed:', error.message);
@@ -142,13 +142,13 @@ async function fetchFromHackerNews() {
 async function fetchFromRSS() {
   const shuffledFeeds = RSS_FEEDS.sort(() => Math.random() - 0.5);
   const selectedFeed = shuffledFeeds[0];
-  
+
   try {
     const feed = await rssParser.parseURL(selectedFeed);
     const techItems = feed.items
       .filter(item => isTechRelated(item.title + ' ' + (item.contentSnippet || '')))
       .slice(0, 5);
-    
+
     return techItems.map(item => ({
       title: item.title,
       description: item.contentSnippet || '',
@@ -167,28 +167,28 @@ async function fetchFromRSS() {
  */
 export async function getSuggestedTopic() {
   console.log('🔍 Fetching topic suggestions...');
-  
+
   // Fetch from all sources in parallel
   const [guardianStories, hnStories, rssStories] = await Promise.all([
     fetchFromGuardian(),
     fetchFromHackerNews(),
     fetchFromRSS(),
   ]);
-  
+
   // Combine and shuffle all stories
   const allStories = [...guardianStories, ...hnStories, ...rssStories]
     .sort(() => Math.random() - 0.5);
-  
+
   if (allStories.length === 0) {
     console.log('❌ No tech stories found from sources');
     return null;
   }
-  
+
   // Try to get full content for the first few stories
   for (const story of allStories.slice(0, 3)) {
     console.log(`📄 Extracting content from: ${story.title}`);
     const fullContent = await extractArticleContent(story.url);
-    
+
     if (fullContent && fullContent.length > 500) {
       console.log(`✅ Found suitable story from ${story.source}`);
       return {
@@ -199,15 +199,15 @@ export async function getSuggestedTopic() {
       };
     }
   }
-  
+
   // Fallback to first story without full content
   const fallbackStory = allStories[0];
   console.log(`⚠️  Using fallback story: ${fallbackStory.title}`);
-  
+
   return {
     title: fallbackStory.title,
     description: fallbackStory.description,
     fullContent: '',
     source: fallbackStory.source,
   };
-} 
+}

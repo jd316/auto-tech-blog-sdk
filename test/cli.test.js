@@ -32,14 +32,14 @@ describe('CLI Tests', () => {
 
   test('missing GEMINI_API_KEY shows error', () => {
     try {
-      execSync(`node ${cliPath}`, { 
+      execSync(`node ${cliPath}`, {
         encoding: 'utf8',
-        env: { ...process.env, GEMINI_API_KEY: '' }
+        env: { ...process.env, GEMINI_API_KEY: '' },
       });
-      fail('Should have thrown error');
+      throw new Error('Should have thrown error');
     } catch (error) {
       expect(error.stdout).toContain('Error: GEMINI_API_KEY environment variable is required');
       expect(error.stdout).toContain('Get your API key from: https://aistudio.google.com/');
     }
   });
-}); 
+});
