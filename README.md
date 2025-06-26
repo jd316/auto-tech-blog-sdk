@@ -29,37 +29,37 @@ The `auto-tech-blog-sdk` is structured into several modular components, each res
 
 ```mermaid
 graph TD
-    A[CLI / SDK Entry Point] --> B{Choose Topic Source}
-    B --> C{News APIs (Guardian)}
-    B --> D{Hacker News}
-    B --> E{Custom RSS Feeds}
+    A["CLI / SDK Entry Point"] --> B{"Choose Topic Source"}
+    B --> C{"News APIs (Guardian)"}
+    B --> D["Hacker News"]
+    B --> E["Custom RSS Feeds"]
 
-    C --> F[Topic Suggestion]
+    C --> F["Topic Suggestion"]
     D --> F
     E --> F
 
-    F --> G[Google Gemini AI]
-    G --> H[Draft Blog Post]
-    H --> I[Fact-Check Content]
-    I -- OK --> J[Generate Hero Image]
-    I -- Issues --> H
+    F --> G["Google Gemini AI"]
+    G --> H["Draft Blog Post"]
+    H --> I["Fact-Check Content"]
+    I -- "OK" --> J["Generate Hero Image"]
+    I -- "Issues" --> H
 
-    J --> K[Image Optimization (Sharp)]
-    K --> L[Save Post Assets]
+    J --> K["Image Optimization (Sharp)"]
+    K --> L["Save Post Assets"]
 
-    L --> M[Generate RSS Feed]
-    L --> N[Generate Sitemap]
+    L --> M["Generate RSS Feed"]
+    L --> N["Generate Sitemap"]
 
-    M --> O[Save RSS Feed]
-    N --> P[Save Sitemap]
+    M --> O["Save RSS Feed"]
+    N --> P["Save Sitemap"]
 
-    O --> Q[Completion]
+    O --> Q["Completion"]
     P --> Q
 
-    subgraph Data Flow
-        R[Environment Variables (.env)] -- provide API Keys --> G
-        S[History Tracking (.blog-history.json)] -- prevent duplicates --> B
-        T[Output Directory (posts/, assets/)] -- save content --> L
+    subgraph "Data Flow"
+        R["Environment Variables (.env)"] -- "provide API Keys" --> G
+        S["History Tracking (.blog-history.json)"] -- "prevent duplicates" --> B
+        T["Output Directory (posts/, assets/)"] -- "save content" --> L
     end
 
     style A fill:#f9f,stroke:#333,stroke-width:2px
