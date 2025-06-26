@@ -1,0 +1,37 @@
+# Development files
+test/
+coverage/
+.github/
+.vscode/
+.idea/
+
+# Config files
+.eslintrc.json
+jest.config.js
+.editorconfig
+
+# Documentation source files
+CONTRIBUTING.md
+
+# Generated files
+*.log
+.DS_Store
+posts/
+assets/
+.blog-history.json
+
+# Environment files
+.env
+.env.local
+.env.*
+
+# CI/CD
+.travis.yml
+.gitlab-ci.yml
+appveyor.yml
+
+# Temporary files
+*.swp
+*.swo
+*~
+.nyc_output/ 
