@@ -4,6 +4,7 @@ coverage/
 .github/
 .vscode/
 .idea/
+test-e2e.js
 
 # Config files
 .eslintrc.json

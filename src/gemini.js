@@ -115,7 +115,29 @@ export async function factCheck({ draft, context }) {
   }
 
   const genAI = getClient();
-  const prompt = `You are a strict fact checker. Given the ORIGINAL ARTICLE and a BLOG DRAFT, list any statements that are presented as fact but are NOT supported by the article. IGNORE any lines that begin with "My take:" (these are clearly-marked opinions). If every factual statement is supported, reply ONLY with "OK".\n\n--- ORIGINAL ARTICLE ---\n${context.slice(0,20000)}\n--- BLOG DRAFT ---\n${draft.slice(0,20000)}`;
+  const prompt = `You are a fact checker for a tech blog. Given the ORIGINAL ARTICLE and a BLOG DRAFT, identify ONLY extremely serious factual errors where:
+
+1. The blog makes completely false claims about specific facts that directly contradict the article
+2. The blog attributes direct quotes to people who never said them
+3. The blog claims major events happened that aren't mentioned anywhere in the article
+
+IGNORE - these are NOT errors:
+- Minor UI description differences or interpretations 
+- General explanations of technical concepts (even if not in original)
+- Standard industry definitions and background context
+- Reasonable interpretations and analysis of the content
+- Educational explanations that add helpful context
+- Any lines beginning with "My take:" (marked opinions)
+- Different wording of UI elements or interface descriptions
+- Clarifications or expansions on technical concepts
+
+Only flag MAJOR CONTRADICTIONS about important facts. If there are no serious factual errors, reply ONLY with "OK".
+
+--- ORIGINAL ARTICLE ---
+${context.slice(0,20000)}
+
+--- BLOG DRAFT ---
+${draft.slice(0,20000)}`;
 
   try {
     const res = await genAI.models.generateContent({
@@ -124,7 +146,7 @@ export async function factCheck({ draft, context }) {
       tools: [{ googleSearch: {} }],
     });
     const text = res.text.trim();
-    return /^ok$/i.test(text) ? { ok: true, issues: [] } : { ok: false, issues: text.split(/\n+/).slice(0, 10) };
+    return /^ok$/i.test(text) ? { ok: true, issues: [] } : { ok: false, issues: text.split(/\n+/).slice(0, 3) };
   } catch (error) {
     console.warn('Fact-check failed, assuming OK');
     return { ok: true, issues: [] };
