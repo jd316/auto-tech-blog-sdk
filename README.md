@@ -4,7 +4,6 @@
 [![CI Status](https://github.com/jd316/auto-tech-blog-sdk/workflows/CI/badge.svg)](https://github.com/jd316/auto-tech-blog-sdk/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/node/v/auto-tech-blog-sdk.svg)](https://nodejs.org)
-[![npm downloads](https://img.shields.io/npm/dm/auto-tech-blog-sdk.svg)](https://www.npmjs.com/package/auto-tech-blog-sdk)
 
 ## Project Overview
 
