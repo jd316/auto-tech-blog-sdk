@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   testEnvironment: 'node',
   // Automatically clear mock calls and instances between every test
   clearMocks: true,
@@ -14,7 +14,7 @@ export default {
 
   // A list of paths to directories that Jest should use to search for files in
   roots: [
-    '<rootDir>/tests',
+    '<rootDir>/test',
   ],
 
   // The glob patterns Jest uses to detect test files
