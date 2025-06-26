@@ -1,10 +1,10 @@
-# auto-tech-blog
+# auto-tech-blog-sdk
 
-[![npm version](https://badge.fury.io/js/auto-tech-blog.svg)](https://badge.fury.io/js/auto-tech-blog)
-[![CI Status](https://github.com/jd316/auto-tech-blog/workflows/CI/badge.svg)](https://github.com/jd316/auto-tech-blog/actions)
+[![npm version](https://badge.fury.io/js/auto-tech-blog-sdk.svg)](https://badge.fury.io/js/auto-tech-blog-sdk)
+[![CI Status](https://github.com/jd316/auto-tech-blog-sdk/workflows/CI/badge.svg)](https://github.com/jd316/auto-tech-blog-sdk/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js Version](https://img.shields.io/node/v/auto-tech-blog.svg)](https://nodejs.org)
-[![npm downloads](https://img.shields.io/npm/dm/auto-tech-blog.svg)](https://www.npmjs.com/package/auto-tech-blog)
+[![Node.js Version](https://img.shields.io/node/v/auto-tech-blog-sdk.svg)](https://nodejs.org)
+[![npm downloads](https://img.shields.io/npm/dm/auto-tech-blog-sdk.svg)](https://www.npmjs.com/package/auto-tech-blog-sdk)
 
 Generate a fully-formed tech/AI blog post (markdown + hero image) with one command.
 
@@ -12,10 +12,10 @@ Generate a fully-formed tech/AI blog post (markdown + hero image) with one comma
 
 ```bash
 # Install globally
-npm install -g auto-tech-blog
+npm install -g auto-tech-blog-sdk
 
 # Or use directly with npx
-npx auto-tech-blog
+npx auto-tech-blog-sdk
 ```
 
 ### Quick Setup
@@ -36,7 +36,7 @@ npx auto-tech-blog
 3. **Run the generator:**
 
    ```bash
-   auto-tech-blog
+   auto-tech-blog-sdk
    ```
 
 > **Note:** The package automatically loads `.env` files using dotenv. No manual configuration needed!
@@ -99,13 +99,13 @@ sitemap.xml
 This package includes TypeScript definitions for a better development experience.
 
 ```ts
-import { runOnce, generateBlogPost, BlogPostResult } from 'auto-tech-blog';
+import { runOnce, generateBlogPost, BlogPostResult } from 'auto-tech-blog-sdk';
 ```
 
 ### JavaScript Usage
 
 ```js
-import { runOnce, generateBlogPost } from 'auto-tech-blog';
+import { runOnce, generateBlogPost } from 'auto-tech-blog-sdk';
 
 // Simple usage with RSS/sitemap generation
 // .env file is automatically loaded

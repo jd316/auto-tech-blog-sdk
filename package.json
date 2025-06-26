@@ -4,7 +4,7 @@
   "description": "CLI + SDK to generate a tech/AI blog post each day with Gemini, compress hero image and scaffold Next.js static files.",
   "type": "module",
   "bin": {
-    "auto-tech-blog": "cli.js"
+    "auto-tech-blog-sdk": "cli.js"
   },
   "exports": {
     "./package.json": "./package.json",
@@ -64,11 +64,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jd316/auto-tech-blog.git"
+    "url": "https://github.com/jd316/auto-tech-blog-sdk.git"
   },
   "author": "jd316 <jd316biswas@gmail.com>",
   "bugs": {
-    "url": "https://github.com/jd316/auto-tech-blog/issues"
+    "url": "https://github.com/jd316/auto-tech-blog-sdk/issues"
   },
-  "homepage": "https://github.com/jd316/auto-tech-blog#readme"
+  "homepage": "https://github.com/jd316/auto-tech-blog-sdk#readme"
 }
