@@ -63,11 +63,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jd316/auto-tech-blog-sdk.git"
+    "url": "git+https://github.com/jd316/auto-tech-blog-sdk.git"
   },
   "author": "jd316 <jd316biswas@gmail.com>",
   "bugs": {
     "url": "https://github.com/jd316/auto-tech-blog-sdk/issues"
   },
   "homepage": "https://github.com/jd316/auto-tech-blog-sdk#readme"
-} 
+}
