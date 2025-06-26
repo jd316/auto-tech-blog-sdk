@@ -22,12 +22,12 @@
     ".env.example"
   ],
   "scripts": {
-    "test": "node test/smoke.js",
+    "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint": "eslint . --ext .js",
     "build": "echo 'No build step needed for pure ESM package'",
-    "prepublishOnly": "npm test"
+    "prepublishOnly": "npm run test"
   },
   "keywords": [
     "gemini",
